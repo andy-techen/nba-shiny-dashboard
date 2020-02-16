@@ -27,6 +27,8 @@ server <- function(input, output) {
       paste0(input$player, "'s Career Stats")
     })
   })
+  
+  # creating the datatable
   br_stats <- reactive({
     br_getstats(input$player)
   })
@@ -37,10 +39,11 @@ server <- function(input, output) {
         datatable(br_stats(), options = list(pageLength = 5, dom = 'tp'))
       })
     })
+  
+  # creating a reactive function and ggplot for the comparison
   br_stats2 <- reactive({
     br_getstats(input$player2)
   })
-  
   br_line <- reactive({
     if (input$player2 == "") {
       br_stats() %>%
@@ -88,6 +91,8 @@ server <- function(input, output) {
         theme(plot.title = element_text(face = "bold"))
     }
   })
+  
+  # converting and rendering the ggplotly 
   output$attr_line <-
     renderPlotly({
       input$compare
@@ -101,6 +106,7 @@ server <- function(input, output) {
       })
     })
   
+  # the valueboxes for the fantasy scores
   output$fantasy <- renderValueBox({
     input$compare
     isolate({
@@ -130,6 +136,7 @@ server <- function(input, output) {
     })
   })
   
+  # ouputting the players' images
   output$pg_img <- renderText({
     input$build
     isolate({
@@ -161,6 +168,7 @@ server <- function(input, output) {
     })
   })
   
+  # outputting the players' career summary stats
   output$pg_f <- renderTable({
     input$build
     isolate({
@@ -191,6 +199,8 @@ server <- function(input, output) {
       br_getcareer(input$c)
     })
   }, rownames = T)
+  
+  # calculating team's total fantasy score
   output$team_fantasy <- renderValueBox({
     input$build
     isolate({
