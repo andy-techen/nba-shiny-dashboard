@@ -16,5 +16,7 @@ Calculate the career fantasy score average for each player! The official formula
 PTS + 1.2 * TRB + 1.5 * AST + 3 * STL + 3 * BLK - TOV
 ```
 
+The Shiny UI and server is placed in the [nba](./nba.R) file, while [nba_layout](./nba_layout.R) contains the code for the sidebar and body design, and [nba_func](./nba_func.R) has some functions I wrote for the app to be more effective.
+
 This is just a simple prototype of my fantasy score tracker, and there are still some bugs yet to be fixed, but I'll definitely be adding more features to it as I continue to build up my skills in R.
 Find my detailed description [here](https://andy27479.wixsite.com/mysite/post/playing-fantasy-basketball-using-r-and-shiny), and the app deployed on shinyapps.io [here](https://dershan219.shinyapps.io/nba_shiny/).
